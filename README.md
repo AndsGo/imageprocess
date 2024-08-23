@@ -2,7 +2,7 @@
 # imgaeprocess
 
 本项目基于以下开源库:
-[imaging]([disintegration/imaging: Imaging is a simple image processing package for Go (github.com)](https://github.com/disintegration/imaging)) 
+[imaging](https://github.com/disintegration/imaging)
 
 About Imaging is a simple image processing package for Go
 
