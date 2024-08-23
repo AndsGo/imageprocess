@@ -8,7 +8,7 @@ import (
 )
 
 func TestWarterMarkText(t *testing.T) {
-	img, f, err := LoadImage("examples/image.jpg")
+	img, f, err := LoadImage("examples/example.jpg")
 	if err != nil {
 		t.Error(err)
 	}

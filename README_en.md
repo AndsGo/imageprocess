@@ -1,93 +1,96 @@
-**中文** | [English](./README_en.md) 
+**English** | [中文](./README.md) 
 # imgaeprocess
 
-本项目基于以下开源库:
-[imaging]([disintegration/imaging: Imaging is a simple image processing package for Go (github.com)](https://github.com/disintegration/imaging)) 
+This project is based on the following open-source libraries:
+[imaging]([disintegration/imaging: Imaging is a simple image processing package for Go (github.com)](https://github.com/disintegration/imaging)) About Imaging is a simple image processing package for Go
 
-About Imaging is a simple image processing package for Go
+[webp](https://github.com/chai2010/webp) WebP decoder and encoder for Go (Zero Dependencies).
 
-[webp](https://github.com/chai2010/webp) 
+[gg](https://github.com/fogleman/gg) Go Graphics - 2D rendering in Go with a simple API.
 
-WebP decoder and encoder for Go (Zero Dependencies).
+`Imageprocess`is a simple Go image processing package that supports WEBP, JPG, JPEG, PNG, BMP, TIFF, and GIF. It provides image processing capabilities similar to those of Alibaba Cloud's OSS, suitable for building a local file OSS image processing system.
+[Resize images](doc/resize_en.md)
 
-[gg](https://github.com/fogleman/gg) 
+[Add watermarks](doc/watermark_en.md)
 
-Go Graphics - 2D rendering in Go with a simple API.
+[Custom crop](doc/crop_en.md)
 
-`Imageprocess`是一个简单的Go图像处理包。支持 WEBP,JPG,JPEG,PNG,BMP,TIFF,GIF。提供了类似阿里云`oss`的图片处理能力包括:
+[Adjust image quality](doc/quality_en.md)
 
-[图片缩放](doc/resize.md)
+[Convert image formats](doc/format_en.md)
 
-[图片水印](doc/watermark.md)
+[Blur](doc/blur_en.md)
 
-[自定义裁剪](doc/crop.md)
+[Rotate](doc/rotate_en.md)
 
-[质量变换](doc/quality.md)
+[Brightness](doc/bright_en.md)
 
-[格式转换](doc/format.md)
+[Sharpen](doc/sharpen_en.md)
 
-[模糊效果](doc/blur.md)
+[Contrast](doc/sharpen_en.md)
 
-[旋转](doc/rotate.md)
-
-[亮度](doc/bright.md)
-
-[锐化](doc/sharpen.md)
-
-[对比度](doc/sharpen.md)
-
-参数兼容阿里云oss图片处理参数，可以用于搭建本地文件oss图片处理系统。
-
-## 0.安装
+## 0.**Installation**
 
 ```shell
 go get github.com/AndsGo/imageprocess
 ```
 
-## 1.代码示例
+## 1.**Code Example**
 
-代码`Api`使用示例
+Here is an example of how to use the API in code:
 
 ```go
-// 改变大小，高100px，宽300px，模式等比缩放匹配最大边
+// Resize the image to a height of 100px and a width of 300px, with the mode being proportional scaling to match the largest side
 img = imageprocess.ResizeImage(img, ResizeOption{ResizeMode: Lfit, Width: 10, Height: 100)
-// 将原图缩放成宽高100 px：`resize,h_100,w_100` 缩放模式fill：`m_fill`
+                                                 
+// Scale the original image to a width and height of 100px: `resize,h_100,w_100` scaling mode fill: `m_fill`
 img = imageprocess.ResizeImage(img, ResizeOption{ResizeMode: Fill, Width: 10, Height: 100)
-// 将原图缩放成宽高100 px：`resize,h_100,w_100` 缩放模式pad：`m_pad`。 以红色填充：`color_FF0000`
+                                                 
+// Scale the original image to a width and height of 100px: `resize,h_100,w_100` scaling mode pad: `m_pad`. Fill with red: `color_FF0000`
 img = imageprocess.ResizeImage(img, ResizeOption{ResizeMode: Pad, Width: 10, Height: 100 Color: &color.RGBA{R: 255, G: 0, B: 0, A: 255}})
-// 将example.jpg缩略为宽高300：`resize,w_300,h_300` 水印内容为“Hello World”：`text_Hello%20World 水印文字颜色为白色、字体大小为30：`color_FFFFFF,size_30` ` 水印文字位置是右下、水平边距10、中线垂直偏移10：`g_se,x_10,y_10`
-// 多模式串行处理可以使用Process或(ProcessGif)方法，你也可以全部使用Process或(ProcessGif)方法进行处理
+                                                 
+// Thumbnail example.jpg to a width and height of 300: `resize,w_300,h_300` watermark content "Hello World": `text_Hello%20World` watermark text color is white, font size is 30: `color_FFFFFF,size_30` watermark text position is bottom right, horizontal margin 10, vertical offset from the center 10: `g_se,x_10,y_10`
+// Multiple mode serial processing can be done using the Process or (ProcessGif) method, and you can also use all the Process or (ProcessGif) methods for processing
 options := make([]Option, 0)
 options = append(options, Option{Resize, ResizeOption{Width: 300, Height: 300)
 options = append(options, Option{Watermark, TextWatermarkOption{WatermarkOption: WatermarkOption{
     Opacity: 20, Position: Center, X: 10, Y: 10,
 }, Color: &color.RGBA{255, 255, 255, 1}, Size: 30, Text: "Hello World"}})
 imageprocess.Process(img, file, options)
-// 裁剪起点为（800,500）：`crop,x_800,y_500` 裁减范围300 px*300 px：`w_300,h_300`
-img = imageprocess.CropImage(img, CropOption{X:800,Y:500,Width: 300, Height: 300})
-// 裁剪起点为原图右下角：`crop,g_se` 裁减范围900 px*900 px：`w_900,h_900`
-img = imageprocess.CropImage(img, CropOption{Position: SouthEast,Width: 900, Height: 900})
-// 原图缩放为宽100 px：`resize,w_100,h_100` 图片相对质量设置为80%：`quality,q_80`
+                                                      
+// Crop the image starting at coordinates (800,500) with a crop area of 300 pixels by 300 pixels.
+img = imageprocess.CropImage(img, CropOption{X: 800, Y: 500, Width: 300, Height: 300})
+
+// Crop the image starting at the bottom right corner of the original image with a crop area of 900 pixels by 900 pixels.
+img = imageprocess.CropImage(img, CropOption{Position: SouthEast, Width: 900, Height: 900})
+
+// Resize the original image to a width of 100 pixels and set the image quality to 80%.
 options := make([]Option, 0)
-options = append(options, Option{Resize, ResizeOption{Width: 100, Height: 100)
-// 质量
+options = append(options, Option{Resize, ResizeOption{Width: 100, Height: 100}})
+
+// Append quality adjustment to the options with a quality setting of 80%.
 options = append(options, Option{Quality, QualityOption{Quality: 80}})
-// 格式转换为PNG
+
+// Convert the format of the image to PNG and append this to the options.
 options = append(options, Option{FormatType, FormatOption{Format: PNG}})
+
+// Process the image with the specified options.
 imageprocess.Process(img, file, options)
-// 将原图按顺时针旋转90° 
-img = imageprocess.AddjustRotate(img,RotateOption{Value:90})
-// 将图片亮度提高50
-img = imageprocess.AddjustBright(img,BrightnessOption{Value:50})
-// 对原图进行锐化处理，锐化参数为100
-img = imageprocess.AddjustSharpen(img,SharpenOption{Value:100})
-// 对比度提高50
-img = imageprocess.AddjustContrast(img,ContrastOption{Value:50})     
+
+// Rotate the original image 90 degrees clockwise.
+img = imageprocess.AddjustRotate(img, RotateOption{Value: 90})
+
+// Increase the brightness of the image by 50 units.
+img = imageprocess.AddjustBright(img, BrightnessOption{Value: 50})
+
+// Apply sharpening to the original image with a sharpening parameter of 100.
+img = imageprocess.AddjustSharpen(img, SharpenOption{Value: 100})
+
+// Increase the contrast of the image by 50 units.
+img = imageprocess.AddjustContrast(img, ContrastOption{Value: 50})  
 ```
 
-综合代码示例请查看
-
-`process_test.go`
+For a comprehensive code example, see `process_test.go`
 
 ```go
 package imageprocess
@@ -103,21 +106,21 @@ func Test_Process(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	file, _ := os.Create("examples/out.jpg")
+	file, _ := os.Create("examples/out.PNG")
 	options := make([]Option, 0)
-	// 格式转换为PNG
+	// Convert to PNG
 	options = append(options, Option{FormatType, FormatOption{Format: PNG}})
-	//  改变大小
+	//  Resize
 	options = append(options, Option{Resize, ResizeOption{ResizeMode: Pad, Width: 300, Height: 300, Color: &color.RGBA{R: 255, G: 255, B: 0, A: 255}}})
-	// 裁剪
+	// Crop
 	options = append(options, Option{Crop, CropOption{Width: 200, Height: 200, X: 0, Y: 0, Position: Center}})
-	// 水印
+	// Watermark
 	options = append(options, Option{Watermark, TextWatermarkOption{WatermarkOption: WatermarkOption{
 		Opacity: 100, Position: South, X: 10, Y: 10,
 	}, Color: &color.RGBA{111, 222, 111, 1}, Size: 40, Text: "hello watermark"}})
-	// 模糊
+	// Blur
 	options = append(options, Option{Blur, GammaOption{Value: 5}})
-	// 质量
+	// Quality
 	options = append(options, Option{Quality, QualityOption{Quality: 500}})
 	err = Process(img, file, f, options)
 	if err != nil {
@@ -132,7 +135,7 @@ func Test_ProcessGif(t *testing.T) {
 	}
 	file, _ := os.Create("examples/out.gif")
 	options := make([]Option, 0)
-	// 格式转换为GIF
+	// Convert to GIF
 	options = append(options, Option{FormatType, FormatOption{Format: GIF}})
 	options = append(options, Option{Gamma, GammaOption{Value: 500}})
 	options = append(options, Option{Resize, ResizeOption{ResizeMode: Pad, Width: 300, Height: 300, Color: &color.RGBA{R: 255, G: 255, B: 255, A: 1}}})
@@ -152,7 +155,7 @@ func Test_UrlOptions(t *testing.T) {
 		t.Error(err)
 	}
 	file, _ := os.Create("examples/out.jpg")
-	// 增加水印，然后修改大小
+	// Add a watermark and then modify the size
 	options, err := ParseOptions("image/watermark,t_30,g_center,x_10,y_10,text_hello watermark,color_1366ec,size_200/resize,m_pad,h_100,w_100,color_FF0000")
 	if err != nil {
 		t.Error(err)
@@ -182,11 +185,11 @@ func Test_UrlOptions(t *testing.T) {
 | 对原图进行锐化处理，锐化参数为100                            | ![锐化1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1162220761/p529929.jpg) |
 | 对比度提高50                                                 | ![对比度2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8782220761/p529938.jpg) |
 
-## 2.参数示例
+## 2.Parameter example
 
-url参数示例
+URL parameter example
 
-格式转换可以在process_test中进行测试 ,测试代码如下
+Format conversion can be tested in `process_test`, the test code is as follows
 
 ```go
 func Test_UrlOptions(t *testing.T) {
@@ -195,12 +198,12 @@ func Test_UrlOptions(t *testing.T) {
 		t.Error(err)
 	}
 	file, _ := os.Create("examples/out.jpg")
-	// 增加水印，然后修改大小
+	// Add watermark and then modify the size
 	options, err := ParseOptions("image/watermark,t_30,g_center,x_10,y_10,text_hello watermark,color_1366ec,size_200/resize,m_pad,h_100,w_100,color_FF0000")
 	if err != nil {
 		t.Error(err)
 	}
-    // 处理图片
+    // Prcocess image
 	err = Process(img, file, f, options)
 	if err != nil {
 		t.Error(err)
@@ -213,7 +216,7 @@ func Test_UrlOptions(t *testing.T) {
 | resize,h_100,w_300,m_lfit                                    | 改变大小，高100px，宽300px，模式等比缩放匹配最大边           | ![break](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0317789661/p527171.jpg) |
 | resize,m_fill,h_100,w_100                                    | 将原图缩放成宽高100 px：`resize,h_100,w_100` 缩放模式fill：`m_fill` | ![自动裁剪](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0317789661/p527179.jpg) |
 | resize,m_pad,h_100,w_100,color_FF0000                        | 将原图缩放成宽高100 px：`resize,h_100,w_100` 缩放模式pad：`m_pad`。 以红色填充：`color_FF0000` | ![填充红色](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0317789661/p527183.jpg) |
-| resize,w_300,h_300/watermark,size_30,text_Hello World,color_FFFFFF,g_se,x_10,y_10 | 将example.jpg缩略为宽高300：`resize,w_300,h_300` 水印内容为“Hello World”：`text_Hello%20World 水印文字颜色为白色、字体大小为30：`color_FFFFFF,size_30` ` 水印文字位置是右下、水平边距10、中线垂直偏移10：`g_se,x_10,y_10` | ![图片处理1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/6929730761/p529186.jpg) |
+| resize,w_300,h_300/watermark,size_30,text_Hello%20World,color_FFFFFF,g_se,x_10,y_10 | 将example.jpg缩略为宽高300：`resize,w_300,h_300` 水印内容为“Hello World”：`text_Hello%20World 水印文字颜色为白色、字体大小为30：`color_FFFFFF,size_30` ` 水印文字位置是右下、水平边距10、中线垂直偏移10：`g_se,x_10,y_10` | ![图片处理1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/6929730761/p529186.jpg) |
 | crop,x_800,y_500,w_300,h_300                                 | 裁剪起点为（800,500）：`crop,x_800,y_500` 裁减范围300 px*300 px：`w_300,h_300` | ![裁剪2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1965894861/p674612.jpg) |
 | crop,w_900,h_900,g_se                                        | 裁剪起点为原图右下角：`crop,g_se` 裁减范围900 px*900 px：`w_900,h_900` | ![裁剪3](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1965894861/p674614.jpg) |
 | resize,w_100/quality,q_80                                    | 原图缩放为宽100 px：`resize,w_100` 图片相对质量设置为80%：`quality,q_80` | ![变换1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8442799661/p529279.jpg) |
@@ -223,34 +226,34 @@ func Test_UrlOptions(t *testing.T) {
 | sharpen,100                                                  | 对原图进行锐化处理，锐化参数为100                            | ![锐化1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1162220761/p529929.jpg) |
 | contrast,-50                                                 | 对比度提高50                                                 | ![对比度2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8782220761/p529938.jpg) |
 
-## 3.综合示例
+## 3.Comprehensive example
 
-这是一个简单文件服务器的例子，代码位于`examples`文件夹下
+This is an <span id="comprehensive">Comprehensive example</span>of a simple file server. The code is located in the `examples` folder
 
 ```shell
 cd examples
 go run example.go
 ```
 
-原图: 2500*1875 ![image](./examples/example.jpg) 
+Original image: 2500*1875 ![image](./examples/example.jpg) 
 
-访问:
+Visit:
 
 http://127.0.0.1:8080/file/example.jpg?x-oss-process=image/resize,w_500,h_300/watermark,t_80,g_se,x_10,y_10,text_hello,color_FFFFFF,size_40/format,webp
 
-结果: 400*300  65.4k
+Reult: 400*300  65.4k
 
 ![imgae](./doc/1.webp)
 
-转换代码表示:
+Conversion code means:
 
-`resize,w_500,h_300`  转换宽500,高300
+`resize,w_500,h_300`Convert width 500, height 300
 
-`watermark,t_80,g_se,x_10,y_10,text_hello,color_FFFFFF,size_40` 增加水印,水印位置位于右下,离边缘距离为10,水印内容为hello,颜色为FFFFFF,文字大小为40
+`watermark,t_80,g_se,x_10,y_10,text_hello,color_FFFFFF,size_40`Add watermark, the watermark position is located in the lower right, the distance from the edge is 10, the watermark content is hello, the color is FFFFFF, and the text size is 40
 
-`format,webp`格式转换为 `webp`
+`format,webp`Format conversion to `webp`
 
-示例代码(你测试自己的图片需要修改 **`fileFolders`**):
+Sample code (you need to modify **`fileFolders`** when testing your own pictures):
 
 ```go
 package main
@@ -266,7 +269,7 @@ import (
 	"github.com/AndsGo/imageprocess"
 )
 
-// 文件夹，you need change it
+// You need change it
 var fileFolders = "./"
 
 func main() {
@@ -279,29 +282,29 @@ func main() {
 }
 
 func fileHandler(w http.ResponseWriter, r *http.Request) {
-	// 获取文件名称
+	// Get the file name
 	fileName := strings.TrimPrefix(r.URL.Path, "/file/")
-	// 打开文件
+	// Open the file
 	file, err := os.Open(fmt.Sprintf("%s%s", fileFolders, fileName))
 	if err != nil {
 		http.Error(w, "File not found", http.StatusNotFound)
 		return
 	}
 	defer file.Close()
-	// 获取参数
-	// 获取文件后缀
+	// Get parameters
+	// Get the file suffix
 	f, err := imageprocess.FormatFromExtension(fileName)
 	if err != nil {
-		// 将处理后的文件内容写入响应
+		// Write the processed file content to the response
 		if _, err := io.Copy(w, file); err != nil {
 			http.Error(w, "Failed to send file", http.StatusInternalServerError)
 		}
 		return
 	}
-	//处理处理参数
+	// Processing parameters ossParameter
 	ossParams := r.URL.Query().Get("x-oss-process")
 	if ossParams == "" {
-		//无需处理
+		// nothing to do
 		if _, err := io.Copy(w, file); err != nil {
 			http.Error(w, "Failed to send file", http.StatusInternalServerError)
 		}
@@ -313,20 +316,20 @@ func fileHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if len(options) == 0 {
-		//无需处理
+		// nothing to do
 		if _, err := io.Copy(w, file); err != nil {
 			http.Error(w, "Failed to send file", http.StatusInternalServerError)
 		}
 		return
 	}
-	//处理图片
+	// Process the image 
 	err = processImg(file, w, f, options)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("processFile %s", err.Error()), http.StatusInternalServerError)
 	}
 }
 
-// 进行转换
+// Convert
 func processImg(file io.Reader, w io.Writer, f imageprocess.Format, options []imageprocess.Option) error {
 	if f == imageprocess.GIF {
 		imgGif, err := gif.DecodeAll(file)
