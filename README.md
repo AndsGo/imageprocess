@@ -1,7 +1,6 @@
 **中文** | [English](./README_en.md) 
 ------
 
-[TOC]
 # imgaeprocess
 
 本项目基于以下开源库:
@@ -17,7 +16,8 @@ WebP decoder and encoder for Go (Zero Dependencies).
 
 Go Graphics - 2D rendering in Go with a simple API.
 
-`Imageprocess`是一个简单的Go图像处理包。支持 WEBP,JPG,JPEG,PNG,BMP,TIFF,GIF。提供了类似阿里云`oss`的图片处理能力包括:
+`Imageprocess`是一个简单的Go图像处理包。支持 WEBP,JPG,JPEG,PNG,BMP,TIFF,GIF。提供了类似阿里云`oss`的图片处理能力。
+包括:
 
 [图片缩放](doc/resize.md)
 
