@@ -171,20 +171,20 @@ func Test_UrlOptions(t *testing.T) {
 
 
 
-| Meaning                                                      | Image                                                        |
+| Meaning | Image |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 改变大小，高100px，宽300px，模式等比缩放匹配最大边           | ![break](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0317789661/p527171.jpg) |
-| 将原图缩放成宽高100 px：`resize,h_100,w_100` 缩放模式fill：`m_fill` | ![自动裁剪](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0317789661/p527179.jpg) |
-| 将原图缩放成宽高100 px：`resize,h_100,w_100` 缩放模式pad：`m_pad`。 以红色填充：`color_FF0000` | ![填充红色](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0317789661/p527183.jpg) |
-| 将example.jpg缩略为宽高300：`resize,w_300,h_300` 水印内容为“Hello World”：`text_Hello%20World 水印文字颜色为白色、字体大小为30：`color_FFFFFF,size_30` ` 水印文字位置是右下、水平边距10、中线垂直偏移10：`g_se,x_10,y_10` | ![图片处理1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/6929730761/p529186.jpg) |
-| 裁剪起点为（800,500）：`crop,x_800,y_500` 裁减范围300 px*300 px：`w_300,h_300` | ![裁剪2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1965894861/p674612.jpg) |
-| 裁剪起点为原图右下角：`crop,g_se` 裁减范围900 px*900 px：`w_900,h_900` | ![裁剪3](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1965894861/p674614.jpg) |
-| 原图缩放为宽100 px：`resize,w_100,h_100` 图片相对质量设置为80%：`quality,q_80` | ![变换1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8442799661/p529279.jpg) |
-| 将原图转换为PNG格式                                          | ![png](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8448459951/p139213.png) |
-| 将原图按顺时针旋转90°                                        | ![旋转1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0212120761/p529612.jpg) |
-| 将图片亮度提高50                                             | ![亮度1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/7532220761/p529917.jpg) |
-| 对原图进行锐化处理，锐化参数为100                            | ![锐化1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1162220761/p529929.jpg) |
-| 对比度提高50                                                 | ![对比度2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8782220761/p529938.jpg) |
+| Change size, height 100px, width 300px, mode proportional scaling to match the maximum edge | ![break](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0317789661/p527171.jpg) |
+| Scale the original image to 100 px in width and height: `resize,h_100,w_100` Scaling mode fill: `m_fill` | ![Auto-crop](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0317789661/p527179.jpg) |
+| Scale the original image to 100 px in width and height: `resize,h_100,w_100` Scaling mode pad: `m_pad`. Fill with red: `color_FF0000` | ![Fill with red](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0317789661/p527183.jpg) |
+| Reduce example.jpg to 300 in width and height: `resize,w_300,h_300` Watermark content is "Hello World": `text_Hello%20World Watermark text color is white, font size is 30: `color_FFFFFF,size_30` ` Watermark text position is lower right, horizontal margin is 10, center line vertical offset is 10: `g_se,x_10,y_10` | ![Image processing 1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/6929730761/p529186.jpg) |
+| Cropping start point is (800,500): `crop,x_800,y_500` Cropping range 300 px*300 px: `w_300,h_300` | ![Crop 2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1965894861/p674612.jpg) |
+| Cropping start point is the lower right corner of the original image: `crop,g_se` Cropping range 900 px*900 px: `w_900,h_900` | ![Crop 3](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1965894861/p674614.jpg) |
+| The original image is scaled to 100 in width px: `resize,w_100,h_100` Set the relative image quality to 80%: `quality,q_80` | ![Transform 1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8442799661/p529279.jpg) |
+| Convert the original image to PNG format | ![png](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8448459951/p139213.png) |
+| Rotate the original image 90° clockwise | ![Rotate 1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0212120761/p529612.jpg) |
+| Increase the image brightness by 50 | ![Brightness 1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/7532220761/p529917.jpg) |
+| Sharpen the original image with a sharpening parameter of 100 | ![Sharpening 1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1162220761/p529929.jpg) |
+| Increase the contrast by 50 | ![Contrast 2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8782220761/p529938.jpg) |
 
 ## 2.Parameter example
 
@@ -212,21 +212,20 @@ func Test_UrlOptions(t *testing.T) {
 }
 ```
 
-| Options                                                      | Meaning                                                      | Image                                                        |
+| Options | Meaning | Image |
 | :----------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| resize,h_100,w_300,m_lfit                                    | 改变大小，高100px，宽300px，模式等比缩放匹配最大边           | ![break](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0317789661/p527171.jpg) |
-| resize,m_fill,h_100,w_100                                    | 将原图缩放成宽高100 px：`resize,h_100,w_100` 缩放模式fill：`m_fill` | ![自动裁剪](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0317789661/p527179.jpg) |
-| resize,m_pad,h_100,w_100,color_FF0000                        | 将原图缩放成宽高100 px：`resize,h_100,w_100` 缩放模式pad：`m_pad`。 以红色填充：`color_FF0000` | ![填充红色](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0317789661/p527183.jpg) |
-| resize,w_300,h_300/watermark,size_30,text_Hello%20World,color_FFFFFF,g_se,x_10,y_10 | 将example.jpg缩略为宽高300：`resize,w_300,h_300` 水印内容为“Hello World”：`text_Hello%20World 水印文字颜色为白色、字体大小为30：`color_FFFFFF,size_30` ` 水印文字位置是右下、水平边距10、中线垂直偏移10：`g_se,x_10,y_10` | ![图片处理1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/6929730761/p529186.jpg) |
-| crop,x_800,y_500,w_300,h_300                                 | 裁剪起点为（800,500）：`crop,x_800,y_500` 裁减范围300 px*300 px：`w_300,h_300` | ![裁剪2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1965894861/p674612.jpg) |
-| crop,w_900,h_900,g_se                                        | 裁剪起点为原图右下角：`crop,g_se` 裁减范围900 px*900 px：`w_900,h_900` | ![裁剪3](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1965894861/p674614.jpg) |
-| resize,w_100/quality,q_80                                    | 原图缩放为宽100 px：`resize,w_100` 图片相对质量设置为80%：`quality,q_80` | ![变换1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8442799661/p529279.jpg) |
-| format,png                                                   | 将原图转换为PNG格式                                          | ![png](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8448459951/p139213.png) |
-| rotate,90                                                    | 将原图按顺时针旋转90°                                        | ![旋转1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0212120761/p529612.jpg) |
-| bright,50                                                    | 将图片亮度提高50                                             | ![亮度1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/7532220761/p529917.jpg) |
-| sharpen,100                                                  | 对原图进行锐化处理，锐化参数为100                            | ![锐化1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1162220761/p529929.jpg) |
-| contrast,-50                                                 | 对比度提高50                                                 | ![对比度2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8782220761/p529938.jpg) |
-
+| resize,h_100,w_300,m_lfit | Change the size, height 100px, width 300px, mode proportional scaling to match the maximum edge | ![break](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0317789661/p527171.jpg) |
+| resize,m_fill,h_100,w_100 | Scale the original image to 100 px in width and height: `resize,h_100,w_100` Scaling mode fill: `m_fill` | ![Auto-crop](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0317789661/p527179.jpg) |
+| resize,m_pad,h_100,w_100,color_FF0000 | Scale the original image to 100 px in width and height: `resize,h_100,w_100` Scaling mode pad: `m_pad`. Fill with red: `color_FF0000` | ![Fill with red](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0317789661/p527183.jpg) |
+| resize,w_300,h_300/watermark,size_30,text_Hello%20World,color_FFFFFF,g_se,x_10,y_10 | Reduce example.jpg to 300 in width and height: `resize,w_300,h_300` Watermark content is "Hello World": `text_Hello%20World Watermark text color is white, font size is 30: `color_FFFFFF,size_30` ` Watermark text position is lower right, horizontal margin is 10, center line vertical offset is 10: `g_se,x_10,y_10` | ![Image processing 1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/6929730761/p529186.jpg) |
+| crop,x_800,y_500,w_300,h_300 | The cropping start point is (800,500): `crop,x_800,y_500` The cropping range is 300 px*300 px: `w_300,h_300` | ![Crop 2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1965894861/p674612.jpg) |
+| crop,w_900,h_900,g_se | The cropping start point is the lower right corner of the original image: `crop,g_se` Crop range 900 px*900 px: `w_900,h_900` | ![Crop 3](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1965894861/p674614.jpg) |
+| resize,w_100/quality,q_80 | Scale the original image to 100 px wide: `resize,w_100` Set the image relative quality to 80%: `quality,q_80` | ![Transform 1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8442799661/p529279.jpg) |
+| format,png | Convert the original image to PNG format | ![png](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8448459951/p139213.png) |
+| rotate,90 | Rotate the original image 90° clockwise | ![Rotate1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/0212120761/p529612.jpg) |
+| bright,50 | Increase the image brightness by 50 | ![Brightness1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/7532220761/p529917.jpg) |
+| sharpen,100 | Sharpen the original image with a sharpening parameter of 100 | ![Sharpen 1](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/1162220761/p529929.jpg) |
+| contrast,-50 | Increase contrast by 50 | ![Contrast 2](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8782220761/p529938.jpg) |
 ## 3.Comprehensive example
 
 This is an <span id="comprehensive">Comprehensive example</span>of a simple file server. The code is located in the `examples` folder
